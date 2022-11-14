@@ -1,5 +1,7 @@
 import requests
 import time
+from parsel import Selector
+# from tech_news.database import create_news
 
 
 # Requisito 1
@@ -18,6 +20,11 @@ def fetch(url):
 # Requisito 2
 def scrape_novidades(html_content):
     """Seu código deve vir aqui"""
+    css_selector = "h2.entry-title a::attr(href)"
+    html_page = Selector(html_content)
+    array_links = html_page.css(css_selector).getall()
+
+    return array_links
 
 
 # Requisito 3
